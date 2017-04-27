@@ -5,11 +5,10 @@ namespace App\Controllers;
 /**
 * 
 */
-class HomeController
+class HomeController extends Controller
 {
-	
 	function index($request, $response)
 	{
-		return 'Home controller';
+		return $this->view->render($response, 'home.twig');
 	}
 }
