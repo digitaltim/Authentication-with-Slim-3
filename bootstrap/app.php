@@ -56,6 +56,8 @@ $container['view'] = function ($container) {
 		'user' => $container->auth->user(),
 	]);
 
+	$view->getEnvironment()->addGlobal('flash', $container->flash);
+
 	return $view;
 };
 
