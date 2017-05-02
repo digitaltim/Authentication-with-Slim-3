@@ -13,13 +13,7 @@ class Auth
 {
 	public function user()
 	{
-		if (isset($_SESSION['user'])) {
-			//grab user by their username
-			$q = new QueryBuilder("SELECT id, username, password FROM admins WHERE id = $1 ", $_SESSION['user']);
-	        $rs = $q->execute();
-	        return pg_fetch_assoc($rs);
-	    }
-	    return false;
+		return User::find($_SESSION['user']);
 	}
 
 	public function check()
