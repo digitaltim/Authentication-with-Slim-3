@@ -25,6 +25,11 @@ class PasswordController extends Controller
     	if ($validation->failed()) {
     		return $response->withRedirect($this->router->pathFor('auth.password.change'));
     	}
-    	die('change password');
+    	
+    	$this->auth->user()->setPassword($request->getParam('password'));
+
+    	$this->flash->addMessage('info', 'Your password has been changed.');
+
+		return $response->withRedirect($this->router->pathFor('home'));
     }
 }
