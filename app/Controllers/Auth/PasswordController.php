@@ -17,6 +17,14 @@ class PasswordController extends Controller
 
     public function postChangePassword($request, $response)
     {
-        return $this->view->render($response, 'auth/password/change.twig');
+    	$validation = $this->validator->validate($request, [
+    		'password_old' => v::noWhitespace()->notEmpty()->matchesPassword($this->auth->user()->password),
+    		'password' => v::noWhitespace()->notEmpty(),
+    	]);
+
+    	if ($validation->failed()) {
+    		return $response->withRedirect($this->router->pathFor('auth.password.change'));
+    	}
+    	die('change password');
     }
 }
