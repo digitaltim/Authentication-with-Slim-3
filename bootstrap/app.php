@@ -77,6 +77,10 @@ $container['csrf'] = function ($container) {
 	return new \Slim\Csrf\Guard;
 };
 
+$container['PasswordController'] = function ($container) {
+	return new \App\Controllers\Auth\PasswordController($container);
+};
+
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
